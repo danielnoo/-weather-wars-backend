@@ -6,36 +6,30 @@ const moment = require('moment');
 // https://www.weatherapi.com/docs/
 
 const getWeatherApi =  async () => {
-  const currentWeather = await axios(`http://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER_API_KEY}&q=Toronto`)
+  const currentWeatherData = await axios(`http://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER_API_KEY}&q=Toronto`)
 
-  console.log('this is the current weather', currentWeather);
+  console.log('Weather API current weather is ', currentWeatherData.data.current.temp_c);
 
+  const currentWeather = currentWeatherData.data.current.temp_c;
 
-let myDate = moment().add(1, 'd').format('YYYY-MM-DD')
+  const myDate = moment().add(1, 'd').format('YYYY-MM-DD')
 
-const forecast = await axios(
-    `http://api.weatherapi.com/v1/forecast.json?key=${process.env.WEATHER_API_KEY}&q=Toronto&dt=2021-11-26&hour=15`
-);
+  const forecastData = await axios(
+    `http://api.weatherapi.com/v1/forecast.json?key=${process.env.WEATHER_API_KEY}&q=Toronto&dt=${myDate}&hour=15`
+  );
 
  
 
-const result = forecast.data.forecast.forecastday 
+  const forecast = forecastData.data.forecast.forecastday[0].hour[0].temp_c;
 
-console.log('this is the forecast', result[0].hour)
+  console.log('Weather API forecast for 24 hours from now: ', forecast)
 
   
-  // 
+  return {
+    currentWeather,
+    forecast
+  }
 
-  //   axios({
-//   method: "GET",
-//   url: `https://www.rijksmuseum.nl/api/en/collection`,
-//   dataResponse: "json",
-//   params: {
-//     key: process.env.WEATHER_API_KEY,
-//     format: "json",
-//     hasImage: true,
-//   },
-// })
 }
 
 module.exports = getWeatherApi

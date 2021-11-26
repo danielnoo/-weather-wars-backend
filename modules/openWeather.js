@@ -1,51 +1,44 @@
 const axios = require("axios").default;
 
-const openWeather = () => {
+const openWeather = async () => {
  
- const forecastOptions = {
-  method: "GET",
-  url: "https://community-open-weather-map.p.rapidapi.com/forecast",
-  params: { q: "toronto, ca", units: "metric" },
-  
-  headers: {
-    "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-    "x-rapidapi-key": process.env.OPEN_WEATHER_MAP_KEY,
-  }
-};
-const currentOptions = {
-  method: "GET",
-  url: "https://community-open-weather-map.p.rapidapi.com/weather",
-  params: {
-    q: "toronto, ca",
-    units: "metric",
-  },
-  headers: {
-    "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-    "x-rapidapi-key": process.env.OPEN_WEATHER_MAP_KEY,
-  },
-};
+  const forecastOptions = {
+    method: "GET",
+    url: "https://community-open-weather-map.p.rapidapi.com/forecast",
+    params: { q: "toronto, ca", units: "metric" },
+    
+    headers: {
+      "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
+      "x-rapidapi-key": process.env.RAPID_API_KEY,
+    }
+  };
+  const currentOptions = {
+    method: "GET",
+    url: "https://community-open-weather-map.p.rapidapi.com/weather",
+    params: {
+      q: "toronto, ca",
+      units: "metric",
+    },
+    headers: {
+      "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
+      "x-rapidapi-key": process.env.RAPID_API_KEY,
+    },
+  };
 
-let forecast;
-let currentWeather;
-axios
-  .request(forecastOptions)
-  .then(function (response) {
-    forecast = response.data.list[6].main.temp;
-    console.log(forecast);
-  })
-  .then((response) => {
-    axios
-    .request(currentOptions)
-    .then(function (response) {
-      currentWeather = response.data.main.temp
-      console.log(currentWeather);
-    })
-  })
+  const forecastData = await axios.request(forecastOptions)
+
+  const forecast = forecastData.data.list[6].main.temp;
+  console.log('OpenWeather API 24hr forecast is ', forecast);
   
+  const currentWeatherData = await axios.request(currentOptions)
+      
+  const currentWeather = currentWeatherData.data.main.temp
+  console.log('OpenWeather API current weather is ', currentWeather);
   
-  .catch(function (error) {
-    console.error(error);
-  });
+  return {
+    currentWeather,
+    forecast
+  }
 
 }
 

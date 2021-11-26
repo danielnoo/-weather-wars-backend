@@ -18,5 +18,8 @@ server.listen(config.PORT, () => {
 
 // openWeather()
 
-visualCrossing()
+// visualCrossing().then((res) => console.log(res))
 
+// weatherBit()
+
+aeris()

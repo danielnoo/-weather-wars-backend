@@ -1,9 +1,8 @@
 const axios = require("axios").default;
 
 
-const aeris = () => {
-  let currentWeather;
-  let forecast;
+const aeris = async () => {
+ 
   const currentOptions = {
     method: 'GET',
     url: 'https://aerisweather1.p.rapidapi.com/observations/toronto,ca',
@@ -13,13 +12,10 @@ const aeris = () => {
     }
   };
   
-  axios.request(currentOptions).then(function (response) {
-    
-    currentWeather = response.data.response.ob.tempC
-    console.log(currentWeather);
-  }).catch(function (error) {
-    console.error(error);
-  });
+  const currentWeatherData = await axios.request(currentOptions)
+
+  const currentWeather = currentWeatherData.data.response.ob.tempC;
+  console.log('Aeris API current weather is ', currentWeather)
 
   const options = {
     method: "GET",
@@ -31,12 +27,17 @@ const aeris = () => {
     },
   };
   
-  axios.request(options).then(function (response) {
-    forecast = response.data.response[0].periods[23].tempC;
-    console.log(forecast);
-  }).catch(function (error) {
-    console.error(error);
-  });
+  const forecastData = await axios.request(options)
+
+
+  const forecast = forecastData.data.response[0].periods[23].tempC;
+  console.log('Aeris API 24hr forecast is', forecast);
+
+
+  return {
+    currentWeather,
+    forecast
+  }
 
 }
 

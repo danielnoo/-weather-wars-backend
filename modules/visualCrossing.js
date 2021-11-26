@@ -25,7 +25,10 @@ const visualCrossing = async () => {
 
   
 
-
+    return {
+      currentWeather,
+      forecast
+    }
  
 
 }
