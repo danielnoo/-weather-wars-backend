@@ -4,6 +4,7 @@ const config = require("./utils/config");
 const logger = require("./utils/logger");
 const getWeatherApi = require("./modules/weatherApi"); 
 const openWeather = require("./modules/openWeather");
+const aeris = require('./modules/aeris');
 
 const server = http.createServer(app);
 
@@ -13,4 +14,7 @@ server.listen(config.PORT, () => {
 
 // getWeatherApi()
 
-openWeather()
+// openWeather()
+
+aeris()
+
