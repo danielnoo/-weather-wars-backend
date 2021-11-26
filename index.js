@@ -6,6 +6,7 @@ const getWeatherApi = require("./modules/weatherApi");
 const openWeather = require("./modules/openWeather");
 const aeris = require('./modules/aeris');
 const weatherBit = require('./modules/weatherBit');
+const visualCrossing = require('./modules/visualCrossing');
 
 const server = http.createServer(app);
 
@@ -17,5 +18,5 @@ server.listen(config.PORT, () => {
 
 // openWeather()
 
-weatherBit()
+visualCrossing()
 
