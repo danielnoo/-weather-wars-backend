@@ -32,6 +32,10 @@ weatherBit = async () => {
     
   const forecast = forecastData.data.data[7].temp;
 
+  console.log('weather bit current weather is ', currentWeather);
+
+  console.log('weather bit 24hr forecast is ', forecast);
+
   return {
     currentWeather,
     forecast

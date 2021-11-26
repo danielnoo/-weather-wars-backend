@@ -11,7 +11,7 @@ const visualCrossing = async () => {
     `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/toronto?unitGroup=metric&key=${process.env.VISUALCROSSING_API_KEY}&include=current`
   );
 
-  console.log(currentWeatherData.data.currentConditions.temp);
+  console.log('Visual Crossing current weather is ', currentWeatherData.data.currentConditions.temp);
 
   const currentWeather = currentWeatherData.data.currentConditions.temp
 
@@ -19,7 +19,7 @@ const visualCrossing = async () => {
     `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/toronto?unitGroup=metric&key=${process.env.VISUALCROSSING_API_KEY}&include=hours`
   );
 
-  console.log(forecastWeatherData.data.days[1].hours[15].temp);
+  console.log('Visual Crossing 24hr forecast is ', forecastWeatherData.data.days[1].hours[15].temp);
 
   const forecast = forecastWeatherData.data.days[1].hours[15].temp;
 

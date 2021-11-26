@@ -13,26 +13,34 @@ mongoose
   });
 
 const entrySchema = new mongoose.Schema({
-  name: {
-    type: String,
-    unique: true,
-    minLength: 2,
-    required: true,
+  aeris: {
+    type: Object,
+    
   },
-  number: {
-    type: String,
-    unique: true,
-    minLength: 2,
-    required: true,
+  openWeather: {
+    type: Object,
+    
+  },
+  visualCrossing: {
+    type: Object,
+    
+  },
+  weatherApi: {
+    type: Object,
+    
+  },
+  weatherBit: {
+    type: Object,
+    
+    
   },
   date: {
     type: Date,
     required: true,
   },
-  important: Boolean,
 });
 
-entrySchema.plugin(uniqueValidator);
+
 
 /// create method to convert object to JSON and change a few fields
 entrySchema.set("toJSON", {
