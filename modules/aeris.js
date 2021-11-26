@@ -3,12 +3,13 @@ const axios = require("axios").default;
 
 const aeris = () => {
   let currentWeather;
-  var currentOptions = {
+  let forecast;
+  const currentOptions = {
     method: 'GET',
     url: 'https://aerisweather1.p.rapidapi.com/observations/toronto,ca',
     headers: {
       'x-rapidapi-host': 'aerisweather1.p.rapidapi.com',
-      'x-rapidapi-key': ''
+      'x-rapidapi-key': process.env.RAPID_API_KEY
     }
   };
   
@@ -20,18 +21,19 @@ const aeris = () => {
     console.error(error);
   });
 
-  var options = {
-    method: 'GET',
-    url: 'https://aerisweather1.p.rapidapi.com/forecasts/toronto,ca',
-    params: {plimit: '25', filter: '1hr'},
+  const options = {
+    method: "GET",
+    url: "https://aerisweather1.p.rapidapi.com/forecasts/toronto,ca",
+    params: { plimit: "25", filter: "1hr" },
     headers: {
-      'x-rapidapi-host': 'aerisweather1.p.rapidapi.com',
-      'x-rapidapi-key': ''
-    }
+      "x-rapidapi-host": "aerisweather1.p.rapidapi.com",
+      "x-rapidapi-key": process.env.RAPID_API_KEY,
+    },
   };
   
   axios.request(options).then(function (response) {
-    console.log(response.data.response[0].periods[23]);
+    forecast = response.data.response[0].periods[23].tempC;
+    console.log(forecast);
   }).catch(function (error) {
     console.error(error);
   });
