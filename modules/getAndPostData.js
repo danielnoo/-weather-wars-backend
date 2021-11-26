@@ -29,11 +29,7 @@ const getAndPostData = async () => {
 
   // send to db
 
-  entry
-    .save()
-    .then((savedEntry) => savedEntry.toJSON())
-    .then((formattedEntry) => res.json(formattedEntry))
-    .catch((error) => console.log(error));
+  entry.save().catch((error) => console.log(error));
 
 }
 
