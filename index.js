@@ -11,6 +11,6 @@ server.listen(config.PORT, () => {
 });
 
 
-getAndPostData()
+// getAndPostData()
 
 
