@@ -4,6 +4,7 @@ const config = require("./utils/config");
 const logger = require("./utils/logger");
 const getAndPostData = require('./modules/getAndPostData')
 
+
 const server = http.createServer(app);
 
 server.listen(config.PORT, () => {
@@ -12,5 +13,6 @@ server.listen(config.PORT, () => {
 
 
 // getAndPostData()
+
 
 
