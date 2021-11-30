@@ -13,7 +13,7 @@ mongoose
   });
 
 const entrySchema = new mongoose.Schema({
-  aeris: {
+  bestWeather: {
     type: Object,
     
   },

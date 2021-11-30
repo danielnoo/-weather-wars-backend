@@ -1,7 +1,7 @@
 const Entry = require('../models/entry');
 const getWeatherApiCall = require("./weatherApi"); 
 const openWeatherCall = require("./openWeather");
-const aerisCall = require('./aeris');
+const bestWeatherCall = require('./bestWeather');
 const weatherBitCall = require('./weatherBit');
 const visualCrossingCall = require('./visualCrossing');
 
@@ -10,7 +10,7 @@ const visualCrossingCall = require('./visualCrossing');
 
 const getAndPostData = async () => {
   // make api calls
-  const aeris = await aerisCall();
+  const bestWeather = await bestWeatherCall();
   const openWeather = await openWeatherCall();
   const visualCrossing = await visualCrossingCall();
   const weatherApi = await getWeatherApiCall();
@@ -19,7 +19,7 @@ const getAndPostData = async () => {
   // make the entry via model
 
   const entry = new Entry({
-    aeris,
+    bestWeather,
     openWeather,
     visualCrossing,
     weatherApi,
