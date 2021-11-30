@@ -36,8 +36,8 @@ const openWeather = async () => {
   console.log('OpenWeather API current weather is ', currentWeather);
   
   return {
-    currentWeather,
-    forecast
+    currentWeather: parseFloat(currentWeather.toFixed(1)),
+    forecast: parseFloat(forecast.toFixed(1))
   }
 
 }

@@ -6,10 +6,13 @@ const Entry = require("../models/entry");
 
 
 const getLastEntry = async () => {
-  const entries = await Entry.find({}).sort({ _id: -1 });
+  // const entries = await Entry.find({}).sort({ _id: -1 });
 
-  console.log(entries[0]);
+  
 
+  const num = 4.9444444
+
+  console.log(parseFloat(num.toFixed(1)));
   return {
 
   }

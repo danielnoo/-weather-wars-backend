@@ -21,8 +21,8 @@ const bestWeather = async () => {
   console.log('bestWeather 24 hours prediction is', currentWeather.toFixed(2));
 
   return {
-    currentWeather: parseInt(currentWeather.toFixed(1)),
-    forecast: parseInt(forecast.toFixed(1))
+    currentWeather: parseFloat(currentWeather.toFixed(1)),
+    forecast: parseFloat(forecast.toFixed(1))
   }
 
 };
