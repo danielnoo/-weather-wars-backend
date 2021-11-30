@@ -8,7 +8,7 @@ const bestWeather = async () => {
     params: { unitGroup: "us" },
     headers: {
       "x-rapidapi-host": "bestweather.p.rapidapi.com",
-      "x-rapidapi-key": "7643a56475msh6063ffbfb31edfap133914jsn3cc2ccd46bca",
+      "x-rapidapi-key": process.env.RAPID_API_KEY,
     },
   };
 
