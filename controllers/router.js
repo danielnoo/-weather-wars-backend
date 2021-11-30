@@ -10,7 +10,7 @@ const Entry = require('../models/entry')
 // GET base API route
 
 entryRouter.get('/', async (req, res) => {
-  const entries = await Entry.find({}) 
+  const entries = await Entry.find({}).sort({_id:-1})
 
   res.json(entries)
 })

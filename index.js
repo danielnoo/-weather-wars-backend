@@ -4,6 +4,7 @@ const config = require("./utils/config");
 const logger = require("./utils/logger");
 const getAndPostData = require('./modules/getAndPostData')
 const cron = require("node-cron");
+const getLatest = require('./modules/getPreviousEntry')
 
 const server = http.createServer(app);
 
@@ -23,6 +24,10 @@ cron.schedule("0 0 15 * * *", () => {
    scheduled: true,
    timezone: "America/Toronto"
 });
+
+// test for
+
+getLatest();
 
 
 
