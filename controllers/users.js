@@ -2,10 +2,8 @@ const bcrypt = require("bcrypt");
 const usersRouter = require("express").Router();
 const User = require("../models/user");
 
-
 usersRouter.post("/", async (request, response) => {
   try {
-
     const body = request.body;
 
     const saltRounds = 10;
@@ -21,12 +19,10 @@ usersRouter.post("/", async (request, response) => {
     const savedUser = await user.save();
 
     response.json(savedUser);
-
-  } catch(error) {
-    response.status(400).send('Username must be unique');
+  } catch (error) {
+    response.status(400).send("Username must be unique");
   }
 });
-
 
 usersRouter.get("/", async (request, response) => {
   const users = await User.find({});

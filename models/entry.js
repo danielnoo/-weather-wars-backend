@@ -15,32 +15,24 @@ mongoose
 const entrySchema = new mongoose.Schema({
   bestWeather: {
     type: Object,
-    
   },
   openWeather: {
     type: Object,
-    
   },
   visualCrossing: {
     type: Object,
-    
   },
   weatherApi: {
     type: Object,
-    
   },
   weatherBit: {
     type: Object,
-    
-    
   },
   date: {
     type: Date,
     required: true,
   },
 });
-
-
 
 /// create method to convert object to JSON and change a few fields
 entrySchema.set("toJSON", {

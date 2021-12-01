@@ -1,4 +1,4 @@
-const helper = require('./tests_helper')
+const helper = require("./tests_helper");
 
 describe("when there is initially one user in db", () => {
   // ...

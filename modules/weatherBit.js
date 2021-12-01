@@ -1,23 +1,20 @@
 const axios = require("axios").default;
-const getDiff = require('./getDiff');
-
+const getDiff = require("./getDiff");
 
 weatherBit = async (previousForecast) => {
-  
-  
   const currentOptions = {
-    method: 'GET',
-    url: 'https://weatherbit-v1-mashape.p.rapidapi.com/current',
-    params: {lon: '-79.3', lat: '43.6'},
+    method: "GET",
+    url: "https://weatherbit-v1-mashape.p.rapidapi.com/current",
+    params: { lon: "-79.3", lat: "43.6" },
     headers: {
-      'x-rapidapi-host': 'weatherbit-v1-mashape.p.rapidapi.com',
-      'x-rapidapi-key': process.env.RAPID_API_KEY
-    }
-  }
+      "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
+      "x-rapidapi-key": process.env.RAPID_API_KEY,
+    },
+  };
 
-  const currentWeatherData = await axios.request(currentOptions)
+  const currentWeatherData = await axios.request(currentOptions);
 
-  const currentWeather = currentWeatherData.data.data[0].temp
+  const currentWeather = currentWeatherData.data.data[0].temp;
 
   const options = {
     method: "GET",
@@ -29,25 +26,23 @@ weatherBit = async (previousForecast) => {
     },
   };
 
-  const forecastData = await axios.request(options)
-    
+  const forecastData = await axios.request(options);
+
   const forecast = forecastData.data.data[7].temp;
 
   // get difference between currentWeather and previousForecast
 
   const rating = 10 - getDiff(previousForecast, currentWeather);
 
-  console.log(`weatherBit current weather is ${currentWeather} -- forecast is ${forecast} -- weekly rating is ${rating}`);
+  console.log(
+    `weatherBit current weather is ${currentWeather} -- forecast is ${forecast} -- weekly rating is ${rating}`
+  );
 
   return {
     currentWeather,
     forecast,
-    rating
-  }
+    rating,
+  };
+};
 
-}
-
-
-
-
-module.exports = weatherBit
+module.exports = weatherBit;
