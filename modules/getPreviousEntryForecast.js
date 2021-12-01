@@ -5,7 +5,7 @@ const Entry = require("../models/entry");
 // this module is run in getAndPostData.js and is meant to get the previous DB entry so that a score can be tallied in the object return of each individual api call
 
 
-const getLastEntry = async () => {
+const getPreviousEntryForecast = async () => {
   const entries = await Entry.find({}).sort({ _id: -1 });
 
   
@@ -13,6 +13,7 @@ const getLastEntry = async () => {
   const num = 4.9444444
 
   console.log(parseFloat(num.toFixed(1)));
+  
   return {
     bestWeather: entries[0].bestWeather.forecast,
     openWeather: entries[0].openWeather.forecast,
@@ -22,4 +23,4 @@ const getLastEntry = async () => {
   }
 }
 
-module.exports = getLastEntry;
+module.exports = getPreviousEntryForecast;

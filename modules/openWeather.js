@@ -1,6 +1,7 @@
 const axios = require("axios").default;
+const getDiff = require('./getDiff');
 
-const openWeather = async () => {
+const openWeather = async (previousForecast) => {
  
   const forecastOptions = {
     method: "GET",
@@ -32,12 +33,23 @@ const openWeather = async () => {
   
   const currentWeatherData = await axios.request(currentOptions)
       
-  const currentWeather = currentWeatherData.data.main.temp
+  let currentWeather = currentWeatherData.data.main.temp
+  currentWeather = parseFloat(currentWeather.toFixed(1))
   console.log('OpenWeather API current weather is ', currentWeather);
   
+
+
+  // get difference between currentWeather and previousForecast
+
+  const rating = 10 - getDiff(previousForecast, currentWeather);
+
+  console.log(`openWeather current weather is ${currentWeather} -- forecast is ${forecast} -- weekly rating is ${rating}`);
+
+
   return {
-    currentWeather: parseFloat(currentWeather.toFixed(1)),
-    forecast: parseFloat(forecast.toFixed(1))
+    currentWeather,
+    forecast,
+    rating
   }
 
 }

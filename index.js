@@ -4,7 +4,7 @@ const config = require("./utils/config");
 const logger = require("./utils/logger");
 const getAndPostData = require('./modules/getAndPostData')
 const cron = require("node-cron");
-const getLatest = require('./modules/getPreviousEntry')
+const getLatest = require('./modules/getPreviousEntryForecast')
 
 const server = http.createServer(app);
 

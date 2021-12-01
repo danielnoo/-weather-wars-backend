@@ -1,7 +1,8 @@
 const axios = require("axios").default;
+const getDiff = require('./getDiff');
 
 
-weatherBit = async () => {
+weatherBit = async (previousForecast) => {
   
   
   const currentOptions = {
@@ -32,13 +33,16 @@ weatherBit = async () => {
     
   const forecast = forecastData.data.data[7].temp;
 
-  console.log('weather bit current weather is ', currentWeather);
+  // get difference between currentWeather and previousForecast
 
-  console.log('weather bit 24hr forecast is ', forecast);
+  const rating = 10 - getDiff(previousForecast, currentWeather);
+
+  console.log(`weatherBit current weather is ${currentWeather} -- forecast is ${forecast} -- weekly rating is ${rating}`);
 
   return {
     currentWeather,
-    forecast
+    forecast,
+    rating
   }
 
 }

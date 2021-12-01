@@ -1,7 +1,8 @@
 const axios = require("axios").default;
+const getDiff = require('./getDiff')
 
 
-const bestWeather = async () => {
+const bestWeather = async (previousForecast) => {
   const options = {
     method: "GET",
     url: "https://bestweather.p.rapidapi.com/weather/Toronto",
@@ -14,15 +15,22 @@ const bestWeather = async () => {
 
   const data = await axios.request(options);
 
-  const forecast = (data.data.days[1].hours[15].temp - 32) * (5 / 9);
-  const currentWeather = (data.data.currentConditions.temp - 32) * (5/9);
+  let forecast = (data.data.days[1].hours[15].temp - 32) * (5 / 9);
+  forecast = parseFloat(forecast.toFixed(1))
+  let currentWeather = (data.data.currentConditions.temp - 32) * (5/9);
+  currentWeather = parseFloat(currentWeather.toFixed(1))
 
-  console.log('bestWeather current temperature is', forecast.toFixed(2));
-  console.log('bestWeather 24 hours prediction is', currentWeather.toFixed(2));
+  // get difference between currentWeather and previousForecast
+
+  const rating = 10 - getDiff(previousForecast, currentWeather);
+
+  console.log(`bestWeather current weather is ${currentWeather} -- forecast is ${forecast} -- weekly rating is ${rating}` );
+  
 
   return {
-    currentWeather: parseFloat(currentWeather.toFixed(1)),
-    forecast: parseFloat(forecast.toFixed(1))
+    currentWeather,
+    forecast,
+    rating
   }
 
 };
