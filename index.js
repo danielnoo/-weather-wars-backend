@@ -4,7 +4,7 @@ const config = require("./utils/config");
 const logger = require("./utils/logger");
 const getAndPostData = require("./modules/getAndPostData");
 const cron = require("node-cron");
-const getLatest = require("./modules/getPreviousEntryForecast");
+
 
 const server = http.createServer(app);
 
@@ -29,8 +29,10 @@ cron.schedule(
   }
 );
 
+
+// leaving backend to collect data for a few days so I have something to print to front page
+
 // test get latest
 
 // console.log(getLatest().then(result => console.log(result)))
 
-getAndPostData();
