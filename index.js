@@ -36,3 +36,4 @@ cron.schedule(
 
 // console.log(getLatest().then(result => console.log(result)))
 
+getAndPostData()

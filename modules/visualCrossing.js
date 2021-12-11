@@ -18,7 +18,7 @@ const visualCrossing = async (previousForecast) => {
 
   // get difference between currentWeather and previousForecast
 
-  const rating = 10 - getDiff(previousForecast, currentWeather);
+  const rating = 10 - parseFloat(getDiff(previousForecast, currentWeather).toFixed(2));
 
   console.log(
     `visualCrossing current weather is ${currentWeather} -- forecast is ${forecast} -- weekly rating is ${rating}`
