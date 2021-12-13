@@ -4,6 +4,7 @@ const openWeatherCall = require("./openWeather");
 const bestWeatherCall = require("./bestWeather");
 const weatherBitCall = require("./weatherBit");
 const visualCrossingCall = require("./visualCrossing");
+const visionWeatherCall = require("./visionWeather");
 const getPreviousEntryForecast = require("./getPreviousEntryForecast");
 
 // refactor entry model so that it must contain data from each of the api calls
@@ -22,6 +23,7 @@ const getAndPostData = async () => {
   );
   const weatherApi = await getWeatherApiCall(previousForecasts.weatherApi);
   const weatherBit = await weatherBitCall(previousForecasts.weatherBit);
+  const visionWeather = await visionWeatherCall(previousForecasts.visionWeather)
 
   // make the entry via model
 
@@ -31,6 +33,7 @@ const getAndPostData = async () => {
     visualCrossing,
     weatherApi,
     weatherBit,
+    visionWeather,
     date: new Date(),
   });
 

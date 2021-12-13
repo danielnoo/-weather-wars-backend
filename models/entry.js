@@ -28,6 +28,9 @@ const entrySchema = new mongoose.Schema({
   weatherBit: {
     type: Object,
   },
+  visionWeather: {
+    type: Object,
+  },
   date: {
     type: Date,
     required: true,

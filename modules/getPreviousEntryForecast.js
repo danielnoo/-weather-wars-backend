@@ -13,6 +13,7 @@ const getPreviousEntryForecast = async () => {
     visualCrossing: entries[0].visualCrossing.forecast,
     weatherApi: entries[0].weatherApi.forecast,
     weatherBit: entries[0].weatherBit.forecast,
+    visionWeather: entries[0].visionWeather.forecast,
   };
 };
 
