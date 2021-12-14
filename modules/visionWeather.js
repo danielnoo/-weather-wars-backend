@@ -18,7 +18,7 @@ const visionWeather = async (previousForecast) => {
     },
     headers: {
       "x-rapidapi-host": "vision-weather-map.p.rapidapi.com",
-      "x-rapidapi-key": "7643a56475msh6063ffbfb31edfap133914jsn3cc2ccd46bca",
+      "x-rapidapi-key": process.env.RAPID_API_KEY,
     },
   };
 
@@ -37,14 +37,14 @@ const visionWeather = async (previousForecast) => {
   //forecast
 
   const forecastOptions = {
-     method: "GET",
-     url: "https://vision-weather-map.p.rapidapi.com/5-3-day/",
-     params: { q: "toronto,ca" },
-     headers: {
-       "x-rapidapi-host": "vision-weather-map.p.rapidapi.com",
-       "x-rapidapi-key": "7643a56475msh6063ffbfb31edfap133914jsn3cc2ccd46bca",
-     },
-   }
+    method: "GET",
+    url: "https://vision-weather-map.p.rapidapi.com/5-3-day/",
+    params: { q: "toronto,ca" },
+    headers: {
+      "x-rapidapi-host": "vision-weather-map.p.rapidapi.com",
+      "x-rapidapi-key": process.env.RAPID_API_KEY,
+    },
+  };
 
   const forecastData = await axios.request(forecastOptions);
   // converting from kelvin to celsius (-273.15)
